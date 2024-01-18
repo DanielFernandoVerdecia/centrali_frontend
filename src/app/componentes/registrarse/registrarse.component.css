@@ -1,0 +1,599 @@
+.contenedor{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    min-height: 100vh;
+
+    background-color: #fbf2d5;
+
+}
+
+/*Animación de salida escribiendo*/
+.animacion_salida{
+
+    animation-name: bounceOutUp;
+    animation-duration: 1s;
+
+}
+
+
+.form_registro{
+
+    position: relative; 
+ 
+    margin-top: 80px;
+    margin-bottom: 80px;  
+ 
+    width: 800px;
+    min-height: 820px; 
+    max-height: auto;
+ 
+    background-color: white;
+ 
+    border-radius: 8px;
+ 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+ 
+    animation: fadeInDown;
+    animation-duration: .8s;
+
+    
+ 
+ }
+
+
+.encabezado_registro{
+
+    margin-top: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    background-color: #ffd6a4;
+
+    width: 350px;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 35px;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+
+
+}
+
+.size_animacion_check{
+
+    width: 55px;
+    height: 55px;
+
+}
+
+/*Relacionado con Nombre del usuario y cargo*/
+.contenedor_nombre_cargo{
+
+  position: relative;  
+
+  margin-top: 35px;
+  margin-bottom: 35px;  
+
+  width: 620px;
+  height: 300px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+
+  background-color: #fff1c1;
+  border-radius: 8px;
+  
+  z-index: 2;
+
+}
+
+.contenedor_nombre_cargo::before{
+
+    position: absolute;
+    content: "";
+  
+    width: 250px;
+    height: 250px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  
+  
+    background-color: #fbf2d5;
+
+    top: -30px;
+    left: -30px;
+    border-radius: 8px;
+    
+    z-index: -2;
+    
+
+    
+  
+}
+
+
+.contenedor_nombre_cargo::after{
+
+    position: absolute;
+    content: "";
+  
+    width: 250px;
+    height: 250px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  
+  
+    background-color: #fbf2d5;
+
+
+    right: -30px;
+    bottom: -30px;
+
+    border-radius: 8px;
+    
+    z-index: -1;
+    
+
+    
+  
+}
+
+.mensaje_error{
+
+    background: radial-gradient(circle at 10% 20%, rgb(226, 37, 37) 0%, rgb(211, 49, 49) 82.8%);
+
+    border-radius: 8px;
+
+    padding-left: 20px;
+
+    color: white;
+    font-size: 18px;
+
+    /*Animación*/
+    animation: jackInTheBox;
+    animation-duration: .8s;
+
+}
+
+
+.inputs_contenedores, select{
+
+    width: 450px;
+
+
+
+}
+
+.inputs_contenedores input, select{
+
+    border: gray solid .8px;
+
+}
+
+select{
+
+    margin-bottom: 16px;
+
+}
+
+.icono_ver_password{
+
+    border: gray solid .8px;
+    cursor: pointer;
+
+
+}
+
+/*Fin relacionado con Nombre del usuario y cargo*/
+
+/*Contenedor Facebook y Gmail*/
+.fondo_contenedor_facebook_gmail{
+
+    position: relative;
+    
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+ 
+
+    background-color: rgb(244, 242, 242);
+    width: 500px;
+    height: 300px;
+    border-radius: 8px;
+
+    font-family: 'Poppins', sans-serif;
+    
+
+    overflow: hidden;    
+
+}
+
+.fondo_contenedor_facebook_gmail span{
+
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 25px;
+
+}
+
+.contenedor_facebook_gmail{
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 65px;
+
+    width: 500px;
+    height: 300px;
+
+
+    overflow: hidden;    
+
+}
+
+.contenedor_facebook_gmail::after{
+
+    content: "";
+
+    position: absolute;
+
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    background: #1b89ff;
+    left: -105px;
+
+    z-index: 2;
+
+
+}
+
+.contenedor_facebook_gmail::before{
+
+    content: "";
+
+    position: absolute;
+
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    background-color: #08851b;
+    right: 0;
+
+    z-index: 2;
+
+    transform: translate(105px, 105px);
+
+
+}
+
+
+
+picture{
+
+    width: 120px;
+    height: 120px;
+    
+    background-color: rgb(231, 231, 231);
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: .8s ease all;
+
+
+    /*Tipografía*/
+    font-family: 'Nunito Sans', sans-serif;
+
+    
+
+}
+
+picture:hover{
+
+   
+    background-color: rgb(199, 199, 199);
+
+    transition: .8s ease all;
+
+    
+
+}
+
+
+.animacion_elegir_seleccion_facebook_gmail{
+
+    animation: bounce  1.2s infinite;
+
+
+}
+
+
+
+img{
+
+    pointer-events: none;
+
+    width: 50px;
+    height: 50px;
+
+    
+
+}
+
+/*Fin contenedor Facebook y Gmail*/
+
+
+/*Opción usar otra cuenta*/
+#accordionFlushExample .accordion-item {
+
+    
+    width: 550px;
+
+    margin-bottom: 35px;
+
+    
+}
+
+
+.accordion-body{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+    border-left: 2px solid gray;
+    
+    border-radius: 0 0 8px 8px;
+
+
+}
+
+.accordion-button{
+
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   justify-items: end;
+   align-items: center;
+
+
+}
+
+
+/*Animación Flecha*/
+.accordion-button:hover .animacion_flecha{
+
+    -moz-animation: animacion_flecha 2s infinite;
+    -webkit-animation: animacion_flecha 2s infinite;
+    animation: animacion_flecha 2s infinite;
+ 
+ 
+}
+
+
+@keyframes animacion_flecha {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+}
+
+/*Fin Animación Flecha*/
+/*Flecha del botón ¿usar otra cuenta?*/
+.accordion-button::after{
+
+    flex-shrink: 0;
+    width: none;
+    height: 0;
+    margin-left: auto;
+    content: ""; 
+    background-image: none; 
+    background-repeat: no-repeat; 
+    background-size: none; 
+    transition: none;
+
+    
+
+}
+
+.texto_usar_otra_cuenta{
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 25px;
+
+    border-radius: 8px 8px 0 0 !important;
+
+    border: 2px solid gray;
+
+}
+
+
+/*Botón registrarme con otra cuenta*/
+.boton_registrarme{
+
+    text-transform: uppercase;
+    padding: 15px 40px;
+    display: inline-block;
+    border-radius: 100px;
+    transition: ease all 1s ;
+
+    position: relative;
+
+    border: none;
+    outline: none;
+    
+
+}
+
+.boton_registrarme:hover {
+
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+    width: 55%;
+
+    transition: ease all 1s ;
+}
+
+.boton_registrarme:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.boton_registrarme-color {
+    
+    background: linear-gradient(109.6deg, rgb(102, 203, 149) 11.2%, rgb(39, 210, 175) 98.7%);
+    color: white;
+}
+
+.boton_registrarme::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: ease all 1s ;
+}
+
+.boton_registrarme-color::after {
+
+    background: radial-gradient(788px at 0.7% 3.4%, rgb(164, 231, 192) 0%, rgb(255, 255, 255) 90%);
+}
+
+.boton_registrarme:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+/*Fin botón registrarme con otra cuenta*/
+
+
+/*Contenedor de password y repetir password y animación de error*/
+
+
+.contenedor_passwords {
+
+    margin-bottom: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    padding: 15px;
+
+
+    
+ 
+}
+
+@keyframes animacion_error_passwords {
+    
+    0% {
+        background-size:    0 3px,
+                            3px 0,
+                            0 3px,
+                            3px 0;
+    }
+    25% {
+        background-size:    100% 3px,
+                            3px 0,
+                            0 3px,
+                            3px 0;
+    }
+    50% {
+        background-size:    100% 3px,
+                            3px 100%,
+                            0 3px,
+                            3px 0;
+    }
+    75% {
+        background-size:    100% 3px,
+                            3px 100%,
+                            100% 3px,
+                            3px 0;
+    }
+    100% {
+        background-size:    100% 3px,
+                            3px 100%,
+                            100% 3px,
+                            3px 100%;
+    }
+}
+
+.error_ambas_passwords{
+
+    background-repeat: no-repeat;
+
+    border-radius: 5px;
+
+    background-image:   linear-gradient(to right, rgb(226, 37, 37), rgb(226, 37, 37)),
+                        linear-gradient(to bottom, rgb(226, 37, 37), rgb(226, 37, 37)),
+                        linear-gradient(to right, rgb(226, 37, 37), rgb(226, 37, 37)),
+                        linear-gradient(to bottom, rgb(226, 37, 37), rgb(226, 37, 37));
+    background-size:    100% 3px,
+                        3px 100%,
+                        100% 3px,
+                        3px 100%;
+    background-position:    0 0,
+                            100% 0,
+                            100% 100%,
+                            0 100%;
+    animation: animacion_error_passwords 1.25s cubic-bezier(0.19, 1, 0.22, 1);
+
+}
+
+
+
+ 
+
+

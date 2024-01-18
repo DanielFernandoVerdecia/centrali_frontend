@@ -1,0 +1,60 @@
+<form [formGroup] = "formulario_modal">
+
+    <!--Nombre mesa-->
+    <div class="form-floating mb-3">
+
+        <input type="text" class="form-control" id = "id_mesa" 
+        placeholder = "Mesa"
+        formControlName = "mesa"
+        >
+
+        <label for = "id_mesa">Mesa</label>
+
+
+    </div>
+    <!--Fin Nombre mesa-->
+
+    <!--Mensaje error mesa-->
+    <p class = "mensaje_error"
+    *ngIf = "formulario_modal.controls['mesa'].invalid && formulario_modal.controls['mesa'].touched"
+    >
+
+        Escriba una mesa
+
+    </p>
+    <!--Fin Mensaje error mesa-->
+
+</form>
+
+
+
+<!--Botón Crear mesa-->
+<div style = "text-align: center;"
+class = "mb-3"
+*ngIf = "!editar_modal"
+>
+
+    <button class = "btn btn-success"
+    (click) = "crear_mesa()"
+    >
+        Crear mesa
+    </button>
+
+</div>
+<!--Fin Botón Crear mesa-->
+
+
+<!--Botón Actualizar mesa-->
+<div style = "text-align: center;"
+class = "mb-3"
+*ngIf = "editar_modal"
+>
+
+    <button class = "btn btn-success"
+    (click) = "actualizar_mesa()"
+    >
+        Actualizar mesa
+    </button>
+
+</div>
+<!--Fin Botón Actualizar mesa-->

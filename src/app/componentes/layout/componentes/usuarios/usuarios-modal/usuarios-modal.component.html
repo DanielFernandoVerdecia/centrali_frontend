@@ -1,0 +1,82 @@
+<form [formGroup] = "formulario_modal">
+
+    <!--Nombre Usuario-->
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="nombre_usuario" 
+        placeholder="Nombre"
+        formControlName = "nombre"
+        >
+
+        <label for="nombre_usuario">Nombre</label>
+
+      
+        
+
+    </div>
+    <!--Fin Nombre Usuario-->
+
+    <!--Mensaje error nombre-->
+    <p class = "mensaje_error" *ngIf = "this.formulario_modal.controls['nombre'].invalid">
+
+        Escriba un nombre
+
+    </p>
+    <!--Mensaje error nombre-->
+
+    
+
+    <!--Cargo Usuario-->
+    <select class="form-select mb-3"
+    formControlName = "cargo"
+    >
+
+        <option value = "Jefe">
+            Jefe
+        </option>
+
+        <option value="Empleado">
+            Empleado
+        </option>
+
+    </select>
+    <!--Fin Cargo Usuario-->
+
+   
+
+    <!--is_active Usuario-->
+    <div class="form-check form-switch mb-3">
+
+        <input class="form-check-input" type="checkbox" role="switch" 
+        id = "cuenta_verificada"
+        formControlName = "is_active"
+
+        >
+        <label class="form-check-label" for = "cuenta_verificada">
+            Cuenta verificada
+        </label>
+
+    </div>
+    <!--Fin is_active Usuario-->
+
+    
+
+
+
+
+</form>
+
+
+
+<!--Botón Actualizar usuario-->
+<div style = "text-align: center;"
+class = "mb-3"
+>
+
+    <button class = "btn btn-success" (click) = "boton_actualizar_usuario()">
+        Actualizar usuario
+    </button>
+
+</div>
+<!--Fin Botón Actualizar usuario-->
+
+

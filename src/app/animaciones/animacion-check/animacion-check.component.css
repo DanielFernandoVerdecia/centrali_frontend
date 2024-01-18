@@ -1,0 +1,47 @@
+div{
+
+  width: 100%;
+  height: 100%;
+  border: 1.5px solid gray;  
+  border-radius: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+
+  background-color: white;
+
+}
+
+
+.icono_check{
+
+
+    width: 75%;
+    height: 75%;
+
+    animation: animacion_entrada 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+
+}
+
+/*Animación entrada marcado con chulito*/
+@keyframes animacion_entrada {
+
+  0% {
+    transform: scale(2);
+    filter: blur(4px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(0px);
+    opacity: 1;
+  }
+
+}
+
+
+
+
+
+

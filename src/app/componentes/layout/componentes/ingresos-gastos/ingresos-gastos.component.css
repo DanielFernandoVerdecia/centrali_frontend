@@ -1,0 +1,47 @@
+.contenedor_ingresos_gastos{
+
+  
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   gap: 20px;
+
+   width: 400px;
+   height: 400px;
+
+ 
+
+}
+
+.header_ingresos_gastos{
+
+    width: 100%;
+    height: 75px;
+    border-radius: 8px;
+    background-color: #fbf2d5;
+    
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    
+
+}
+
+.contenido_ingresos_gastos{
+
+
+    background-color: #fbf2d5;
+
+    border-radius: 8px;
+
+
+
+}
+
+.registro_seleccionado td{
+
+    background-color: rgb(73, 219, 255);
+
+}

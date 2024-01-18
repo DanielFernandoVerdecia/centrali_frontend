@@ -1,0 +1,242 @@
+<!--Contenedor-->
+<section class = "contenedor">
+
+
+    <!--Cuadro login-->
+    <div class = "form_login">
+
+       <!--Logo del Software Centrali-->
+       <div class = "logo_centrali">
+
+            <i class="fa-solid fa-user"></i> 
+
+       </div> 
+
+       <!--Título, Inicio de sesión-->
+       <p class="titulo_login">
+        Inicio de sesión
+       </p>
+
+       <!--Contenedor iconos Facebook y Gmail-->
+       <div class = "contenedor_facebook_gmail">
+
+            <!--Facebook Icono-->
+            <picture (click) = "login_facebook()">
+
+                <img src = "assets/iconos/facebook.png" 
+                alt="">
+
+                <!--Título, Facebook-->
+                <p>Facebook</p>
+
+            </picture>
+            <!--Fin Facebook Icono-->
+
+            <!--Gmail Icono-->
+            <picture (click) = "login_gmail()">
+
+                <img src = "assets/iconos/gmail.png" 
+                alt="">
+
+                <!--Título, Facebook-->
+                <p>Gmail</p>
+
+            </picture>
+            <!--Fin Gmail Icono-->
+          
+
+
+       </div>
+
+       <!--Contenedor usar otra cuenta para iniciar sesión-->
+       <div class="accordion accordion-flush" id="accordionFlushExample">
+
+        <div class="accordion-item">
+          
+          <!--Título ¿usar otra cuenta?-->  
+          <h2 class="accordion-header">
+
+            <button class="accordion-button collapsed texto_usar_otra_cuenta" type="button" data-bs-toggle="collapse" 
+            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"
+            > 
+              
+              ¿Usar otra cuenta?
+
+              <!--Animación flecha abajo-->
+              <div class = "animacion_flecha">
+                
+                <i class="fa-solid fa-arrow-down"></i>
+
+              </div>
+
+            </button>
+
+          </h2>
+
+          <!--Formulario usar otra cuenta-->
+          <form id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample"
+          [formGroup] = "login_email_password"
+          >
+
+            <div class="accordion-body"
+            >
+
+
+             
+
+              <!--Contenedor input Correo-->  
+              <div>
+
+                  <!--Input correo-->
+                  <div class="form-floating mb-3 inputs_contenedores">
+        
+                    <input type="email" class="form-control" placeholder="Correo"
+                    formControlName = "email"
+
+                    (input) = "validar_formato_email_password(true)"
+                    (blur) = "validar_formato_email_password(true)"
+
+                    >
+                    <label for="floatingInput">Correo</label>
+
+                  
+
+                  </div>
+
+
+                  <!--Mensaje error correo-->
+                  <p class = "mensaje_error" *ngIf = "formulario_correo_password.correo.error">
+
+                    {{formulario_correo_password.correo.mensaje_error}}
+
+                  </p>
+
+              </div>
+              
+
+              
+
+    
+              <!--Contenedor Input contraseña-->
+              <div>
+
+                <div class="input-group mb-3 inputs_contenedores">
+
+                
+                  <!--Input contraseña-->
+                  <div class="form-floating">
+    
+                    <input type="password" class="form-control" id="floatingInputGroup1" 
+                    placeholder="Contraseña"
+                    [type] = "password_input"
+                    formControlName = "password"
+
+                    (input) = "validar_formato_email_password(true)"
+
+                    (blur) = "validar_formato_email_password(true)"
+                    >
+    
+                    <label for="floatingInputGroup1">Contraseña</label>
+    
+                  
+    
+                  </div>
+    
+                  <!--Icono mostrar u ocultar contraseña-->
+                  <span class="input-group-text"
+                  (click) = "ver_password()"
+                  >
+    
+                    <!--Icono ocultar contraseña-->
+                    <i class="fa-solid fa-eye-slash"
+                    *ngIf = "password_input == 'password'"
+                    >
+    
+                    </i>
+    
+                    <!--Icono mostrar contraseña-->
+                    <i class="fa-solid fa-eye"
+                    *ngIf = "password_input == 'text'"
+                    >
+    
+                    </i>
+    
+                    
+    
+                  </span>
+    
+                </div>
+
+                <!--Mensaje error contraseña-->
+                <p class = "mensaje_error" *ngIf = "formulario_correo_password.password.error">
+
+                  {{formulario_correo_password.password.mensaje_error}}
+
+                </p>
+
+              
+
+              </div>
+
+              
+
+              
+
+              <!--Texto, olvidé mi contraseña-->
+              <p class = "texto_olvide_password"
+              routerLink = "/recuperar_password"
+              >
+
+                Olvidé mi contraseña
+                
+                <!--Signo de pregunta-->
+                <i class="fa-solid fa-question signo_pregunta">
+
+                </i>
+              
+              </p>
+
+              
+
+              <!--Botón iniciar sesión-->
+              <button class="boton_iniciar_sesion boton_iniciar_sesion-color "
+              (click) = "boton_login_correo_password()"
+              >
+
+                Ingresar
+
+              </button>
+
+            
+
+            </div>
+
+          </form>
+
+
+        </div>
+       
+        
+       </div>
+
+
+       <!--Texto, registrarse-->
+       <p class = "texto_registrarme">
+
+          No tengo cuenta.
+           
+          <a routerLink = "/registrarme"> 
+            Registrarme
+          </a>
+                
+       </p>
+
+  
+
+
+    </div>
+
+
+</section>
+
+

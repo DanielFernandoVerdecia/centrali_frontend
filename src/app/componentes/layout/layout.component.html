@@ -1,0 +1,197 @@
+<header>
+
+  <!--Izquierda Header-->
+  <div class = "separar_columnas">
+
+
+
+    <!--Contenedor Inventario-->
+    <div class="dropdown">
+
+      <!--Botón Inventario-->
+      <button class="dropdown-toggle subrayar" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+      
+      >
+          Inventario
+      </button>
+      <!--Fin Botón Inventario-->
+
+      <!--Contenido menú botón cuenta usuario-->
+      <ul class="dropdown-menu">
+
+       
+        <!--Productos-->
+        <li>
+
+          <button class="dropdown-item" type="button"
+          routerLink = "productos"
+          >
+          Productos <i class="fa-solid fa-pizza-slice"></i>
+          </button>
+
+        </li>
+
+        <!--Fin productos-->
+
+
+         <!--Mesas-->
+         <li>
+
+          <button class="dropdown-item" type="button"
+          
+          routerLink = "mesas">
+          Mesas 
+          
+            <i class="fa-solid fa-square"></i>
+
+          </button>
+
+        </li>
+
+        <!--Fin Mesas-->
+       
+
+      </ul>
+      <!--Fin Contenido menú botón cuenta usuario-->
+
+
+    </div>  
+    <!--Fin Contenedor Inventario-->
+    
+    <!--Ventas-->
+    <button class = "subrayar"
+    routerLink = "ventas"
+    >
+
+      Ventas
+
+    </button>
+    <!--Fin Ventas-->  
+
+    <!--Usuarios-->
+    <button class = "subrayar"
+    routerLink = "usuarios"
+    *ngIf = "cargo_usuario == 'Jefe'"
+    >
+
+      Usuarios
+
+    </button>
+    <!--Fin Usuarios-->  
+
+    
+
+  </div>
+  <!--Fin Izquierda Header-->
+
+
+  <!--Derecha Header-->
+  <div class = "separar_columnas">
+    
+    <!--Notificaciones-->
+    <button class = "boton_camapana">
+
+
+        <i class="fa-solid fa-bell campana_notificaciones"
+        
+        ></i>
+    </button>
+    <!--Fin Notificaciones-->
+
+
+    <!--Nombre usuario-->
+    
+    <p class = "nombre_usuario">
+      {{nombre_usuario}}
+    </p>
+
+  
+    <!--Fin Nombre usuario-->
+
+    <!--Contenedor logo usuario-->
+    <div class="dropdown">
+
+      <!--Botón cuenta usuario logo-->
+      <button class="dropdown-toggle contenedor_logo_usuario" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa-solid fa-user"></i>
+      </button>
+      <!--Fin Botón cuenta usuario logo-->
+
+      <!--Contenido menú botón cuenta usuario-->
+      <ul class="dropdown-menu">
+
+        <!--Cerrar sesión-->
+        <li>
+
+          <button class="dropdown-item" type="button"
+          (click) = "logOut()"
+          >
+          Cerrar sesión
+          <i class="fa-solid fa-right-from-bracket"></i>  
+         </button>
+          
+        </li>
+        <!--Fin Cerrar sesión-->
+       
+
+      </ul>
+
+      <!-- Modal -->
+      <div class="modal fade" id = "opcion_modal" data-bs-backdrop="static" 
+      data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"
+
+      >
+        <app-modal
+        #Modal
+        ></app-modal>
+
+      </div>
+      <!-- Fin Modal -->
+
+      <!--Fin Contenido menú botón cuenta usuario-->
+
+
+    </div>  
+    <!--Fin Contenedor logo usuario-->
+
+    <!--Cuenta usuario-->
+    <div class = "contenedor_usuario">
+
+        
+
+        
+
+    </div>
+    <!--Fin Cuenta usuario-->
+
+  </div>
+  <!--Fin Derecha Header-->
+
+   
+</header>
+
+<!--Contenido rutas-->
+<div class = "contenedor_rutas">
+
+  <router-outlet></router-outlet>
+  
+</div>
+
+<!--Fin contenido rutas-->
+
+<!--
+<footer>
+ 
+  <div class = "contenido_footer">
+
+    <p>Centrali &copy; 2023</p> 
+
+    <p>Felices fiestas</p>
+
+
+  </div>
+  
+
+
+</footer>
+-->

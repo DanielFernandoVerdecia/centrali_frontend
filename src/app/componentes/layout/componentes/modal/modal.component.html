@@ -1,0 +1,300 @@
+<div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{nombre_registro}}</h1>
+
+        <!--Botón cerrar modal-->
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        (click) = "cerrar_modal()"
+        ></button>
+        <!--Fin Botón cerrar modal-->
+
+      </div>
+
+      <!--Contenido-->
+      <div class="modal-body" *ngIf = "campos_modal.length > 0">
+
+        <div class="form-floating mb-3"
+        *ngFor = "let campo_actual of campos_modal; let i = index"
+        > 
+
+          <!--Tipo Text-->
+          <input 
+          *ngIf = "campo_actual.tipo == 'text'"
+          type = "text" class="form-control" 
+          [id] = " 'id_'  + campo_actual.campo" 
+          [placeholder] = "campo_actual.campo"
+          [(ngModel)] = "get_values(datos_registro_editar)[i]"
+          >
+
+          <!--Fin Tipo Text-->
+
+          <!--Tipo Number-->
+          <input 
+          *ngIf = "campo_actual.tipo == 'number'"
+          type = "number" class="form-control" 
+          [id] = " 'id_'  + campo_actual.campo" 
+          [placeholder] = "campo_actual.campo">
+
+          <!--Fin Tipo Number-->
+
+          <!--Tipo Money-->
+          <input 
+          *ngIf = "campo_actual.tipo == 'money'"
+          type = "money" class="form-control" 
+          [id] = " 'id_'  + campo_actual.campo" 
+          [placeholder] = "campo_actual.campo">
+
+          <!--Fin Tipo Money-->
+
+      
+
+          <!--Tipo Text Area-->
+          <textarea
+          *ngIf = "campo_actual.tipo == 'text_area'" 
+          class="form-control" [placeholder] = "campo_actual.campo"
+          [id] = " 'id_'  + campo_actual.campo"></textarea>
+
+          <!--Fin Tipo Text Area-->
+
+
+          <!--Tipo date-->
+          <input 
+          *ngIf = "campo_actual.tipo == 'date'"
+          type = "date" class="form-control" 
+          [id] = " 'id_'  + campo_actual.campo" 
+          [placeholder] = "campo_actual.campo">
+          <!--Fin Tipo date-->
+
+          <!--Tipo Switch-->
+          <div class="form-check form-switch mb-3"
+          *ngIf = "campo_actual.tipo == 'switch'"
+          >
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+            [checked] = "get_values(datos_registro_editar)[i]"
+            >
+            <label class="form-check-label" for="flexSwitchCheckDefault">
+              {{campo_actual.campo}}
+            </label>
+          </div>
+          <!--Fin Tipo Switch-->
+          
+          <!--Tipo Select Cargo usuario-->
+          <select class="form-select" aria-label="Default select example"
+          *ngIf = "campo_actual.tipo == 'select'"
+          [(ngModel)] = "get_values(datos_registro_editar)[i]"
+          >
+
+            <option value="Jefe" [selected] = "get_values(datos_registro_editar)[i] == 'Jefe'">Jefe</option>
+            <option value="Empleado" [selected] = "get_values(datos_registro_editar)[i] == 'Empleado'">Empleado</option>
+
+
+          </select>
+          <!--Fin Tipo Select Cargo usuario-->
+
+          <!--Nombre del campo-->
+          <label [for] = " 'id_'  + campo_actual.campo"
+          *ngIf = "campo_actual.tipo != 'switch'"
+          >
+            {{campo_actual.campo}}
+          </label>
+          <!--Fin Nombre del campo-->
+
+
+          
+
+
+          <!--Para las opciones de configuración y reportar bug-->
+
+            <!--Configuración-->
+              <div *ngIf = "campo_actual.tipo == 'configuracion'">
+
+                <!--Nombre usuario-->
+
+                  <div class="input-group mb-3">
+
+                    <div class="form-floating">
+                      <input type="text" class="form-control" 
+                      id="nombre_usuario" placeholder="Usuario"
+                      [disabled] = "true"
+                      >
+                      <label for="nombre_usuario">Usuario</label>
+                    </div>
+
+                    <button class="input-group-text btn btn-primary">
+                      Modificar
+                    </button>
+
+                    <button class="input-group-text btn btn-success"
+                    *ngIf = "false"
+                    >
+                      Aceptar
+                    </button>
+
+                    <button class="input-group-text btn btn-danger"
+                    *ngIf = "false"
+                    >
+                      Cancelar
+                    </button>
+
+                  </div>
+
+                <!--Fin Nombre usuario-->
+
+
+                <!--Switch controlar acceso cuenta empleados-->
+                  <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">
+                      Permitir el acceso a todos mis empleados a sus cuentas.
+                    </label>
+                  </div>
+                <!--Fin Switch controlar acceso cuenta empleados-->
+
+
+                <!--Programar las horas de uso de sus cuentas de mis empleados-->
+
+                  <div class = "p-3 border border-primary rounded">
+                      
+                   
+                    <!--Switch-->
+                      <div class="form-check form-switch mb-3">
+
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">
+                          Programar restricción de las cuentas de mis empleados.
+                        </label>
+
+                      </div>
+                    <!--Switch-->
+                  
+                    <!--Hora de inicio-->
+
+                      <div class="input-group mb-3">
+
+                        <div class="form-floating">
+                          <input type="time" class="form-control" id="hora_inicial" placeholder = "Inicio">
+                          <label for ="hora_inicial">Inicio</label>
+                        </div>
+
+                      </div>
+
+                    <!--Fin Hora de inicio-->
+
+
+                    <!--Hora de Final-->
+
+                      <div class="input-group mb-3">
+
+                        <div class="form-floating">
+                          <input type="time" class="form-control" id="hora_final" placeholder = "Final">
+                          <label for ="hora_final">Final</label>
+                        </div>
+
+                      </div>
+
+                    <!--Fin Hora de Final-->
+                    
+                    <div class = "text-center mb-3">
+
+                      <button class = "btn btn-success">
+                        Programar
+                      </button>  
+
+                    
+                    </div>
+
+
+                    <div class = "text-center mb-3">
+
+                      <button class = "btn btn-danger">
+                        Cancelar
+                      </button>  
+
+                    
+                    </div>
+
+
+                    
+                    
+                      
+                  </div>  
+
+                <!--Fin Programar las horas de uso de sus cuentas de mis empleados-->
+
+
+                
+
+              </div>
+
+            <!--Fin Configuración-->
+            
+
+            <!--Reportar Bug-->
+              <div *ngIf = "campo_actual.tipo == 'repotar_bug'">
+
+
+                <p class="mb-3">
+                  Describa con claridad todo lo sucedido, 
+                  si es necesario agregue alguna foto del fallo ocurrido.
+                </p>
+
+
+                <!--Descripción de lo sucedido-->
+                <textarea 
+                class="form-control mb-3" placeholder = "Descripción"
+                id = "descripcion_bug"></textarea>
+
+                <!--Fin Descripción de lo sucedido-->
+
+
+                <div class = "p-3 border border-success rounded">
+                      
+                   
+                  <p class = "text-center mb-3" >Fotos</p>
+                
+               
+                  <div class = "text-center mb-3">
+
+                    <button class = "btn btn-success">
+                      Agregar foto 
+
+                      <i class="fa-solid fa-plus"></i>
+
+                    </button>  
+
+                  
+                  </div>
+
+
+                  
+                  
+                    
+                </div> 
+
+
+
+                
+
+
+              </div>
+            <!--Fin Reportar Bug-->
+
+
+          
+          <!--Fin Para las opciones de configuración y reportar bug-->
+
+
+
+
+        </div>
+
+      
+      </div>
+      <!--Fin Contenido-->
+     
+    </div>
+    
+</div>

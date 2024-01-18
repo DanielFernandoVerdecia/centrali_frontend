@@ -1,0 +1,507 @@
+.contenedor{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    min-height: 100vh;
+
+}
+
+.form_login{
+
+   position: relative; 
+
+   margin-top: 80px;
+   margin-bottom: 80px;  
+
+   width: 800px;
+   min-height: 820px; 
+   max-height: auto;
+
+   background: #ff9a3c;
+
+   border-radius: 8px;
+
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+
+   animation: fadeIn;
+   animation-duration: .8s;
+   
+
+}
+
+
+
+.form_login::before{
+
+    content: "";
+
+    position: absolute;
+
+    width: 200px;
+    height: 200px; 
+ 
+    background-color: #ffe79a;
+
+    border-radius: 8px;
+    
+    right: -140px;
+    top: -50px;
+
+
+
+    
+
+ 
+ }
+
+
+ .form_login::after{
+
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 280px; 
+ 
+    background-color: #ffe79a;
+
+    border-radius: 8px;
+    
+    left: -180px;
+    bottom: 0;
+
+
+
+    
+
+ 
+ }
+
+
+.logo_centrali{
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+
+    background: #fbf2d5;
+
+    -webkit-box-shadow: 1px 3px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 3px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 1px 3px 10px 0px rgba(0,0,0,0.75);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /*Icono*/
+    color: #ff9a3c;
+    font-size: 55px;
+
+
+
+}
+
+.titulo_login{
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 50px;
+
+    background-color: white;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    
+
+}
+
+/*Para los iconos de  Facebook y Gmail*/
+
+.contenedor_facebook_gmail{
+
+    position: relative;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 65px;
+
+    background-color: rgb(244, 242, 242);
+    width: 500px;
+    height: 300px;
+    border-radius: 8px;
+
+    overflow: hidden;    
+
+}
+
+.contenedor_facebook_gmail::after{
+
+    content: "";
+
+    position: absolute;
+
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    background: #f1b963;
+    left: -105px;
+
+    z-index: 2;
+
+
+}
+
+.contenedor_facebook_gmail::before{
+
+    content: "";
+
+    position: absolute;
+
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    background-color: #f57b51;
+    right: 0;
+
+    z-index: 2;
+
+    transform: translate(105px, 105px);
+
+
+}
+
+
+
+picture{
+
+    width: 120px;
+    height: 120px;
+    
+    background-color: rgb(231, 231, 231);
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: .8s ease all;
+
+
+    /*Tipografía*/
+    font-family: 'Nunito Sans', sans-serif;
+
+    
+
+}
+
+picture:hover{
+
+   
+    background-color: rgb(199, 199, 199);
+
+    transition: .8s ease all;
+
+    
+
+}
+
+
+
+img{
+
+    pointer-events: none;
+
+    width: 50px;
+    height: 50px;
+
+    
+
+}
+
+
+/*Opción usar otra cuenta*/
+#accordionFlushExample .accordion-item {
+    border-radius: 8px;
+
+    width: 550px;
+
+    
+}
+
+
+.accordion-body{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+
+.accordion-button{
+
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   justify-items: end;
+   align-items: center;
+
+
+}
+
+
+/*Animación Flecha*/
+.accordion-button:hover .animacion_flecha{
+
+    -moz-animation: animacion_flecha 2s infinite;
+    -webkit-animation: animacion_flecha 2s infinite;
+    animation: animacion_flecha 2s infinite;
+ 
+ 
+}
+
+
+@keyframes animacion_flecha {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+}
+
+/*Fin Animación Flecha*/
+
+
+/*Flecha del botón ¿usar otra cuenta?*/
+.accordion-button::after{
+
+    flex-shrink: 0;
+    width: none;
+    height: 0;
+    margin-left: auto;
+    content: ""; 
+    background-image: none; 
+    background-repeat: no-repeat; 
+    background-size: none; 
+    transition: none;
+
+}
+
+
+
+.texto_usar_otra_cuenta{
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 25px;
+
+    border-radius: 8px !important;
+
+}
+
+.inputs_contenedores{
+
+    width: 450px;
+
+}
+
+.inputs_contenedores input{
+
+    border: gray solid .8px;
+
+}
+
+span{
+
+    border: gray solid .8px;
+    cursor: pointer;
+
+
+}
+
+/*Texto olvidé mi contraseña*/
+.texto_olvide_password {
+
+    margin-top: 10px;
+    margin-bottom: 30px;
+
+    position: relative;
+    height: 30px;
+    overflow: hidden;
+    transition: ease all .8s;
+
+    cursor: pointer;
+
+}
+
+.texto_olvide_password::before {
+
+    position: absolute;
+    content: "";
+    width: 0; 
+    height: 10px;
+    bottom: 0px;
+    background: linear-gradient(109.6deg, rgb(157, 75, 199) 11.2%, rgb(119, 81, 204) 83.1%);
+    border-radius: 5px;
+    transition: ease all .8s; 
+}
+
+.texto_olvide_password:hover::before {
+    width: 160px;
+}
+
+.signo_pregunta{
+
+    color: rgb(157, 75, 199);
+
+    font-size: 20px;
+
+}
+
+
+
+
+
+/*Para el botón de iniciar sesión*/
+.boton_iniciar_sesion{
+
+    text-transform: uppercase;
+    padding: 15px 40px;
+    display: inline-block;
+    border-radius: 100px;
+    transition: ease all 1s ;
+
+    position: relative;
+
+    border: none;
+    outline: none;
+
+
+}
+
+.boton_iniciar_sesion:hover {
+
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+    width: 55%;
+
+    transition: ease all 1s ;
+}
+
+.boton_iniciar_sesion:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.boton_iniciar_sesion-color {
+    background: linear-gradient(156.8deg, rgb(30, 144, 231) 27.1%, rgb(67, 101, 225) 77.8%);
+    color: white;
+}
+
+.boton_iniciar_sesion::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: ease all 1s ;
+}
+
+.boton_iniciar_sesion-color::after {
+    background: linear-gradient(156.8deg, rgb(73, 161, 228) 27.1%, rgb(133, 159, 253) 77.8%);
+}
+
+.boton_iniciar_sesion:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+/*Fin botón de iniciar sesión*/
+
+
+.texto_registrarme{
+
+    margin-top: 40px;
+    margin-bottom: 20px;
+
+
+    background: #fbf2d5;
+
+    width: 500px;
+    height: 85px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    border-radius: 8px;
+
+    font-size: 20px;  
+
+
+
+
+}
+
+
+
+/*Texto mensaje error*/
+.mensaje_error{
+
+    background: radial-gradient(circle at 10% 20%, rgb(226, 37, 37) 0%, rgb(211, 49, 49) 82.8%);
+
+    border-radius: 8px;
+
+    padding-left: 20px;
+
+    color: white;
+    font-size: 18px;
+
+    /*Animación*/
+    animation: jackInTheBox;
+    animation-duration: .8s;
+    
+}
+
+
+
+
+
+
+
+
+
+

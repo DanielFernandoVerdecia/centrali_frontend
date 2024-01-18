@@ -1,0 +1,481 @@
+<!--Productos-->
+<div class="form-floating mb-3 contenedor_productos">
+
+    <input type="text" class="form-control" id = "productos_id" 
+    placeholder="Productos"
+    [(ngModel)] =  "nombre_producto"
+    >
+
+    <label for = "productos_id">Productos</label>
+
+    <!--Buscar algún producto-->    
+    <button class = "btn btn-primary"
+    (click) = "buscar_productos()"
+    [disabled] = "nombre_producto.length == 0"
+    >
+    Buscar     
+    </button>
+    <!--Fin Buscar algún producto--> 
+
+    <!--Ver todos los productos-->    
+    <button class = "btn btn-secondary"
+    (click) = "cambiar_pagina_producto(1)"
+    >
+        Ver todos     
+    </button>
+    <!--Fin Ver todos los productos-->
+    
+    <!--Ocultar sugerencias de los productos-->    
+    <button class = "btn btn-warning"
+    (click) = "ocultar_sugerencia_productos()"
+    *ngIf = "productos_encontrados.length > 0"
+    >
+        Ocultar sugerencias    
+    </button>
+    <!--Fin Ocultar sugerencias de los productos-->  
+
+</div>
+<!--Fin Productos-->
+
+<!--Productos sugeridos-->
+<table class="table table-striped table-bordered "
+*ngIf = "productos_encontrados.length > 0"
+>
+
+<!--Encabezado-->
+    <thead>
+    
+    <!--Columnas-->
+    <tr>
+
+        <th scope="col">
+            Productos sugeridos
+        </th>
+
+        <th scope="col">
+            Precio
+        </th>
+
+
+        <th scope="col">
+            Elección
+        </th>
+
+    
+        
+    </tr>
+    <!--Fin Columnas-->
+
+    </thead>
+<!--Fin Encabezado-->
+
+    <!--Cuerpo-->
+    <tbody>
+    
+    <!--Fila--> 
+    <tr *ngFor = "let registro of productos_encontrados | paginate: { 
+        itemsPerPage: 10, currentPage: pagina_actual_producto, totalItems: total_productos }"
+    >
+
+        <td>
+
+        {{registro.producto}}
+
+        </td>
+
+
+        <td>
+
+        {{registro.precio | pesosColombianos}}
+
+        </td>
+
+        
+        
+        
+        <!--Elegir-->
+        <td>
+
+            <button class = "btn btn-success"
+            (click) = "elegir_producto(registro)"
+            >
+
+                Elegir
+
+            </button>     
+        
+        </td>
+        <!--Fin Elegir-->
+
+
+    </tr>
+    <!--Fin Fila--> 
+    
+    
+    </tbody>
+    <!--Fin Cuerpo-->
+
+</table>
+<!--Fin Productos sugeridos-->
+
+
+<!--Páginas de Productos sugeridos-->
+<pagination-controls (pageChange) = "cambiar_pagina_producto($event)"
+previousLabel="Atrás"
+nextLabel="Siguiente"
+*ngIf = "productos_encontrados.length > 0"
+>
+
+</pagination-controls>
+<!--Fin Páginas de Productos sugeridos-->
+
+<!--Productos seleccionados-->
+<div class = "mb-3">
+
+    <!--Tabla de registros-->
+    <table class="table table-striped table-bordered"
+    *ngIf = "productos_elegidos.length > 0"
+    >
+
+        <!--Encabezado-->
+            <thead>
+            
+            <!--Columnas-->
+            <tr>
+
+                <th scope="col">
+                    Productos elegidos
+                </th>
+
+                <th scope="col">
+                    Precio
+                </th>
+
+                <th scope="col">
+                    Cantidad
+                </th>
+
+                <th scope="col">
+                    Eliminación
+                </th>
+
+            
+                
+            </tr>
+            <!--Fin Columnas-->
+
+            </thead>
+        <!--Fin Encabezado-->
+
+        <!--Cuerpo-->
+        <tbody>
+        
+        <!--Fila--> 
+        <tr *ngFor = "let registro of productos_elegidos; let i = index"
+        >
+
+            <td>
+
+            {{registro.producto}}
+
+            </td>
+
+
+            <td>
+
+            {{registro.precio | pesosColombianos}}
+
+            </td>
+
+            <!--Cantidad de productos-->
+            <td>
+
+                <div class="form-floating mb-3">
+
+                    <input type = "number" class="form-control" [id] = "'cantidad_id' + i" 
+                    placeholder = "Cantidad"
+                    min = "1"
+                    (input) = "escribir_cantidad($event, registro.id)"
+                    [(ngModel)] = "registro.cantidad"
+                    [disabled] = "!ids_productos_existentes.includes(registro.id)"
+                    >
+            
+                    <label [for] = "'cantidad_id' + i">Cantidad</label>
+            
+                
+                </div>
+
+            </td>
+            <!--Fin Cantidad de productos-->
+
+            
+            <!--Eliminar-->
+            <td>
+
+                <button class = "btn btn-danger"
+                (click) = "eliminar_producto(i)"
+                >
+
+                    Eliminar
+
+                </button>     
+            
+            </td>
+            <!--Fin Eliminar-->
+
+
+        </tr>
+        <!--Fin Fila--> 
+        
+        
+        </tbody>
+        <!--Fin Cuerpo-->
+
+    </table>
+    <!--Fin Tabla de registros-->
+
+</div>
+<!--Fin Productos seleccionados-->
+
+<!--Mesa-->
+<div class="form-floating mb-3 contenedor_productos">
+
+    <input type="text" class="form-control" id = "mesa_id" 
+    placeholder = "Mesa"
+    [(ngModel)] = "nombre_mesa"
+    >
+
+    <label for = "mesa_id">Mesa</label>
+
+    <!--Buscar alguna mesa-->    
+    <button class = "btn btn-primary"
+    (click) = "buscar_mesa()"
+    [disabled] = "nombre_mesa.length == 0"
+    >
+    Buscar     
+    </button>
+    <!--Fin Buscar alguna mesa--> 
+
+    <!--Ver todas las mesas-->    
+    <button class = "btn btn-secondary"
+    (click) = "cambiar_pagina_mesa(1)"
+    >
+        Ver todas    
+    </button>
+    <!--Fin Ver todas las mesas-->
+    
+    <!--Ocultar sugerencias de mesas-->    
+    <button class = "btn btn-warning"
+    (click) = "ocultar_sugerencia_mesas()"
+    *ngIf = "mesas_encontradas.length > 0"
+    >
+        Ocultar sugerencias   
+    </button>
+    <!--Fin Ocultar sugerencias de mesas-->  
+
+</div>
+<!--Fin Mesa-->
+
+<!--Sugerencias de mesa-->
+<table class="table table-striped table-bordered "
+*ngIf = "mesas_encontradas.length > 0"
+>
+
+    <!--Encabezado-->
+    <thead>
+    
+    <!--Columnas-->
+    <tr>
+
+        <th scope="col">
+            Mesa sugerida
+        </th>
+
+   
+        <th scope="col">
+            Elección
+        </th>
+
+    
+        
+    </tr>
+    <!--Fin Columnas-->
+
+    </thead>
+    <!--Fin Encabezado-->
+
+    <!--Cuerpo-->
+    <tbody>
+    
+    <!--Fila--> 
+    <tr *ngFor = "let registro of mesas_encontradas | paginate: { 
+        itemsPerPage: 10, currentPage: pagina_actual_mesa, totalItems: total_mesas }"
+    >
+
+        <td>
+
+        {{registro.nombre}}
+
+        </td>
+
+
+
+    
+        <!--Elegir-->
+        <td>
+
+            <button class = "btn btn-success"
+            (click) = "elegir_mesa(registro)"
+            >
+
+                Elegir
+
+            </button>     
+        
+        </td>
+        <!--Fin Elegir-->
+
+
+    </tr>
+    <!--Fin Fila--> 
+    
+    
+    </tbody>
+    <!--Fin Cuerpo-->
+
+</table>
+<!--Fin Sugerencias de mesa-->
+
+<!--Páginas de la tabla mesas sugeridas-->
+<pagination-controls (pageChange) = "cambiar_pagina_mesa($event)"
+previousLabel="Atrás"
+nextLabel="Siguiente"
+*ngIf = "mesas_encontradas.length > 0"
+>
+</pagination-controls>
+<!--Fin Páginas de la tabla mesas sugeridas-->
+
+
+<!--Mesas seleccionadas-->
+<div class = "mb-3">
+
+
+   <!--Tabla de registros-->
+    <table class="table table-striped table-bordered"
+    *ngIf = "mesa_elegida.length > 0"
+    >
+
+        <!--Encabezado-->
+            <thead>
+            
+            <!--Columnas-->
+            <tr>
+
+                <th scope="col">
+                    Mesa elegida
+                </th>
+
+    
+                <th scope="col">
+                    Eliminación
+                </th>
+
+            
+                
+            </tr>
+            <!--Fin Columnas-->
+
+            </thead>
+        <!--Fin Encabezado-->
+
+        <!--Cuerpo-->
+        <tbody>
+        
+        <!--Fila--> 
+        <tr *ngFor = "let mesa of mesa_elegida"
+        >
+
+            <td *ngIf = "mesa == null">
+
+                Mesa no encontrada
+
+            </td>
+
+            <td *ngIf = "mesa != null">
+
+                {{mesa.nombre}}
+
+            </td>
+
+
+        
+            <!--Eliminar-->
+            <td>
+
+                <button class = "btn btn-danger"
+                (click) = "eliminar_mesa()"
+                >
+
+                    Eliminar
+
+                </button>     
+            
+            </td>
+            <!--Fin Eliminar-->
+
+
+        </tr>
+        <!--Fin Fila--> 
+        
+        
+        </tbody>
+        <!--Fin Cuerpo-->
+
+    </table>
+    <!--Fin Tabla de registros-->
+
+</div>
+<!--Fin Mesas seleccionadas-->
+
+<!--Switch venta finalizada-->
+<div class="form-check form-switch mb-3">
+
+    <input class="form-check-input" type="checkbox" role="switch" 
+    id = "venta_finalizada_id"
+    [(ngModel)] = "venta_finalizada"
+    >
+    <label class="form-check-label" for = "venta_finalizada_id">
+        Venta finalizada
+    </label>
+
+</div>
+<!--Fin Switch venta finalizada-->
+
+<!--Botón crear venta-->
+<div style = "text-align: center;"
+class = "mb-3"
+*ngIf = "!editar_modal"
+>
+    <button class = "btn btn-success"
+    (click) = "crear_venta()"
+    >
+        Crear venta
+    </button>
+
+</div>
+<!--Fin Botón crear venta-->
+
+
+<!--Botón editar venta-->
+<div style = "text-align: center;"
+class = "mb-3"
+*ngIf = "editar_modal"
+>
+    <button class = "btn btn-success"
+    (click) = "actualizar_venta()"
+    >
+        Editar venta
+    </button>
+
+</div>
+<!--Fin Botón editar venta-->

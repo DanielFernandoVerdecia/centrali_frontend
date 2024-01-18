@@ -1,0 +1,504 @@
+<!--Botón añadir nueva venta-->
+<div class = "text-center mb-3">
+
+  <button class = "btn btn-success mb-3"
+  data-bs-toggle="modal"
+  data-bs-target = "#Modal_id"
+  (click) = "abrir_crear_modal()"
+  >
+    Agregar nueva venta
+  </button>
+
+</div>
+<!--Fin Botón añadir nueva venta-->
+
+<!--Botón ver todas las ventas-->
+<div class = "text-center mb-3">
+
+  <button class = "btn btn-secondary"
+  (click) = "cambiar_pagina(1)"
+  >
+    Ver todas las ventas
+  </button>
+
+</div>
+<!--Fin Botón ver todas las ventas-->
+
+<!--Aviso de sin registros-->
+<p *ngIf = "registros_datos.length == 0">
+    No hay ninguna venta
+</p>
+<!--Fin Aviso de sin registros-->
+
+
+<!-- Modal -->
+<div class="modal fade" id = "Modal_id" data-bs-backdrop="static" 
+data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          
+          <!--Titulo Modal-->  
+          <h1 class="modal-title fs-5" id="staticBackdropLabel"
+          >
+            {{titulo_modal}}
+          </h1>
+          <!--Fin Titulo Modal--> 
+
+          <!--Botón cerrar Modal-->
+          <button type="button" class="btn-close" 
+          data-bs-dismiss="modal" aria-label="Close"
+          #boton_cerrar_modal
+          >
+
+          </button>
+          <!--Fin Botón cerrar Modal-->
+
+        </div>
+
+        <!--Contenido-->
+        <div class="modal-body">
+            
+            <app-venta-modal></app-venta-modal>       
+        
+        </div>
+        <!--Contenido-->
+
+        
+      </div>
+    </div>
+</div>
+<!-- Fin Modal -->
+
+
+<!--Buscar venta por fecha-->
+
+
+
+<div class="border border-primary rounded centrar mb-3">
+
+  <p class = "text-center mb-3">Buscar venta por fecha</p>
+
+  <!--Switche rango de fecha-->
+  <div class="form-check form-switch mb-3">
+    <input class="form-check-input" type="checkbox" 
+    role="switch" id = "id_rango_fecha"
+    [(ngModel)] = "switch_rango_fecha"
+    >
+    <label class="form-check-label" for="id_rango_fecha">Rango de fecha</label>
+  </div>
+
+  <!--Fin Switche rango de fecha-->
+
+  <!--Solo una fecha-->
+  <div class = "mb-3" *ngIf = "!switch_rango_fecha">
+
+    <form class="row row-cols-sm-auto">
+      <div class="col-12">
+        <div class="input-group">
+          <input
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            name="dp"
+            [(ngModel)]="una_fecha"
+            ngbDatepicker
+            #d="ngbDatepicker"
+          />
+          <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button">
+            
+            <i class="fa-solid fa-arrow-down"></i>
+
+          </button>
+        </div>
+      </div>
+    </form>
+    
+
+
+  </div>
+  
+  <!--Fin Solo una fecha-->
+
+  <!--Rango de fecha-->
+  <div class = "mb-3" *ngIf = "switch_rango_fecha">
+
+    
+    <form class="row row-cols-sm-auto">
+      <div class="col-12">
+        <div class="dp-hidden position-absolute">
+          <div class="input-group">
+            <input
+              name="datepicker"
+              class="form-control"
+              ngbDatepicker
+              #datepicker="ngbDatepicker"
+              [autoClose]="'outside'"
+              (dateSelect)="onDateSelection($event)"
+              [displayMonths]="2"
+              [dayTemplate]="t"
+              outsideDays="hidden"
+              [startDate] ="fecha_inicial!"
+              tabindex="-1"
+            />
+            <ng-template #t let-date let-focused="focused">
+              <span
+                class="custom-day"
+                [class.focused]="focused"
+                [class.range]="isRange(date)"
+                [class.faded]="isHovered(date) || isInside(date)"
+                (mouseenter)="hoveredDate = date"
+                (mouseleave)="hoveredDate = null"
+              >
+                {{ date.day }}
+              </span>
+            </ng-template>
+          </div>
+        </div>
+        <div class="input-group">
+          <input
+            #dpfecha_inicial
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            name="dpfecha_inicial"
+            [value]="formatter.format(fecha_inicial)"
+            (input)="fecha_inicial = validateInput(fecha_inicial, dpfecha_inicial.value)"
+          />
+          <button class="btn btn-outline-secondary bi bi-calendar3" (click)="datepicker.toggle()" type="button">
+            <i class="fa-solid fa-arrow-down"></i>
+          </button>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="input-group">
+          <input
+            #dpfecha_final
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            name="dpfecha_final"
+            [value]="formatter.format(fecha_final)"
+            (input)="fecha_final = validateInput(fecha_final, dpfecha_final.value)"
+          />
+          <button class="btn btn-outline-secondary bi bi-calendar3" (click)="datepicker.toggle()" type="button">
+            <i class="fa-solid fa-arrow-down"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+    
+
+  </div>  
+
+  <!--Fin Rango de fecha-->
+
+
+  <!--Botón de busqueda-->
+  
+  <button class = "btn btn-primary mb-3"
+  (click) = "buscar_venta()"
+  [disabled] = "fecha_inicial == undefined || fecha_final == undefined"
+  >
+    Buscar
+  </button>
+
+  <!--Fin Botón de busqueda-->
+
+
+</div>
+
+
+<!--Fin Buscar venta por fecha-->
+
+<!--Tabla de registros-->
+<table class="table table-striped table-bordered"
+*ngIf = "registros_datos.length > 0"
+>
+
+  <!--Encabezado-->
+    <thead>
+      
+      <!--Columnas-->
+      <tr>
+
+        <th scope="col">
+          ID
+        </th>
+
+        <th scope="col">
+          Productos
+        </th>
+
+        <th scope="col">
+            Mesa
+        </th>
+
+        <th scope="col">
+            Información de la venta
+        </th>
+
+        <th scope="col">
+            Ganancia total
+        </th>
+
+        <th scope="col">
+          Venta finalizada
+        </th>
+
+        <th scope="col">
+          Fecha de creación
+        </th>
+
+        <th scope="col">
+          Fecha de actualización
+        </th>
+
+        <th scope="col">
+          Editar
+        </th>
+
+
+        <th scope="col">
+          Eliminar
+        </th>
+
+    
+        <!--Opción para seleccionar registros para eliminar o editar-->
+        <th scope="col">
+
+          <div class="dropdown">
+
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            
+            </button>
+
+            <ul class="dropdown-menu" style = "cursor: pointer;">
+
+              <li *ngIf = "!seleccionar_registros"
+              (click) = "select_on_off()"
+              >
+                <a class="dropdown-item">Activar selección de registros</a>
+              </li>
+
+              <li *ngIf = "seleccionar_registros"
+              (click) = "elegir_todos_registro()"
+              >
+                <a class="dropdown-item">
+                  Seleccionar todos los actuales registros
+                </a>
+
+              </li>
+
+              <li 
+              *ngIf = "seleccionar_registros"
+              (click) = "select_on_off()"
+              >
+                <a class="dropdown-item">Desactivar selección de registros</a>
+              </li>
+
+
+     
+              <li *ngIf = "seleccionar_registros && registros_seleccionados.length > 0"
+              style = "width: 100%"
+              class = "btn btn-danger"
+              (click) = "eliminar_varias_ventas()"
+              >
+
+             
+                Eliminar lo seleccionado
+                
+
+              </li>
+
+              
+
+              
+             
+
+            </ul>
+          </div>
+
+        </th>
+        <!--Fin Opción para seleccionar registros para eliminar o editar-->
+
+        
+      </tr>
+      <!--Fin Columnas-->
+
+    </thead>
+  <!--Fin Encabezado-->
+
+    <!--Cuerpo-->
+    <tbody [ngClass] = "{cursor_elegir_registro: seleccionar_registros}">
+      
+      <!--Fila--> 
+      <tr *ngFor = "let registro of registros_datos | paginate: { 
+        itemsPerPage: 10, currentPage: pagina_actual, totalItems: total_registros }"
+      [ngClass] = "{registro_seleccionado: registros_seleccionados.includes(registro.id)}"
+      (click) = "elegir_registro(registro.id)"
+      >
+
+        <td>
+
+          {{registro.id}}
+
+
+        </td>
+
+        <td>
+
+          <ul>
+
+            <li *ngFor = "let producto of registro.productos">
+
+              {{producto.producto}} x {{producto.cantidad}}
+
+            </li>
+
+          </ul>  
+  
+        </td>
+
+        <td *ngIf = "registro.mesa == null">
+
+          Mesa no encontrada
+  
+  
+        </td>
+
+        <td *ngIf = "registro.mesa != null">
+
+          {{registro.mesa.nombre}}
+  
+  
+        </td>
+
+        <td>
+
+
+          <div *ngFor = "let descripcion_venta of registro.info_ventas"
+          class = "mb-3"
+          >
+
+            <!--Info venta accordion-->
+            <div class = "accordion" [id] = " 'id_' + descripcion_venta.id">
+
+              <div class="accordion-item">
+
+                <!--Título info venta-->
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target] = "'#panel' + descripcion_venta.id" 
+                  [attr.aria-controls] = "'panel' + descripcion_venta.id">
+                    Info venta.
+                  </button>
+                </h2>
+                <!--Fin Título info venta-->
+
+                <!--Contenido-->
+                <div [id] = "'panel' + descripcion_venta.id" class="accordion-collapse collapse">
+                  
+                  <div class="accordion-body">
+                    {{descripcion_venta.descripcion}}
+                  </div>
+
+                </div>
+                <!--Fin Contenido-->
+
+
+              </div>
+
+            
+
+            </div>
+            <!--Fin Info venta accordion-->
+  
+          </div>
+        
+          
+    
+    
+        </td>
+
+        <td>
+
+            {{registro.ganancia_total | pesosColombianos}}
+      
+      
+        </td>
+
+        <td>
+
+          {{registro.venta_finalizada | siNo}}
+    
+    
+        </td>
+
+
+        <td>
+
+          {{registro.fecha_creacion | fechaFormato}}
+    
+    
+        </td>
+
+        <td>
+
+          {{registro.fecha_actualizacion | fechaFormato}}
+    
+    
+        </td>
+
+        
+
+        <!--Editar-->
+        <td>
+
+          <button class = "btn btn-success"
+          data-bs-toggle="modal"
+          data-bs-target = "#Modal_id"
+          (click) = "editar_venta(registro.id)"
+          >
+            
+            Editar
+
+          </button>
+        
+        </td>
+
+        <!--Eliminar-->
+        <td>
+
+          <button class = "btn btn-danger"
+          (click) = "eliminar_venta(registro.id)"
+          >
+
+            Eliminar
+
+          </button>
+
+        </td>
+
+
+        <!--Columna para seleccionar registros-->
+        <td>
+        </td>
+        <!--Columna para seleccionar registros-->
+
+      </tr>
+      <!--Fin Fila--> 
+      
+     
+    </tbody>
+    <!--Fin Cuerpo-->
+
+</table>
+<!--Fin Tabla de registros-->
+
+<!--Páginas de la tabla-->
+<pagination-controls (pageChange) = "cambiar_pagina($event)"
+previousLabel="Atrás"
+nextLabel="Siguiente"
+*ngIf = "registros_datos.length > 0"
+>
+
+</pagination-controls>
+<!--Fin Páginas de la tabla-->
+

@@ -1,0 +1,112 @@
+<form [formGroup] = "formulario_modal">
+
+    <!--Nombre producto-->
+    <div class="form-floating mb-3">
+
+        <input type="text" class="form-control" id = "Producto" 
+        placeholder="Producto"
+        formControlName = "producto"
+        >
+
+        <label for = "Producto">Producto</label>
+
+
+    </div>
+    <!--Fin Nombre producto-->
+
+    <!--Mensaje error producto-->
+    <p class = "mensaje_error"
+    *ngIf = "formulario_modal.controls['producto'].invalid && formulario_modal.controls['producto'].touched"
+    >
+
+        Escriba un producto
+
+    </p>
+    <!--Mensaje error producto-->
+
+    <!--Precio del producto-->
+    <div class="form-floating mb-3">
+
+        <input type="text" class="form-control" id = "id_precio" 
+        placeholder = "Precio"
+        formControlName = "precio_producto"
+
+        >
+
+        <label for = "id_precio">Precio</label>
+
+
+    </div>
+    <!--Fin Precio del producto-->
+
+    <!--Mensaje error Precio del producto-->
+    <p class = "mensaje_error"
+    *ngIf = "formulario_modal.controls['precio_producto'].invalid && formulario_modal.controls['precio_producto'].touched"
+    >
+
+        Escriba un Precio
+
+    </p>
+    <!--Fin Mensaje error Precio del producto-->
+
+
+
+    <!--Cantidad disponible-->
+    <div class="form-floating mb-3">
+
+        <input type="number" class="form-control" id = "cantidad_disponible" 
+        placeholder = "Cantidad disponible"
+        min = "0"
+        formControlName = "cantidad_disponible"
+        >
+
+        <label for = "cantidad_disponible">Cantidad disponible</label>
+
+
+    </div>
+    <!--Fin Cantidad disponible-->
+
+    <!--Mensaje error precio-->
+    <p class = "mensaje_error"
+    *ngIf = "formulario_modal.controls['cantidad_disponible'].invalid && formulario_modal.controls['cantidad_disponible'].touched"
+    >
+
+        Coloque una cantidad disponible del producto
+
+    </p>
+    <!--Mensaje error precio-->
+
+</form>
+
+
+
+<!--Botón Crear producto-->
+<div style = "text-align: center;"
+class = "mb-3"
+*ngIf = "!editar_modal"
+>
+
+    <button class = "btn btn-success"
+    (click) = "crear_producto()"
+    >
+        Crear producto
+    </button>
+
+</div>
+<!--Fin Botón Crear producto-->
+
+
+<!--Botón Actualizar producto-->
+<div style = "text-align: center;"
+class = "mb-3"
+*ngIf = "editar_modal"
+>
+
+    <button class = "btn btn-success"
+    (click) = "actualizar_producto()"
+    >
+        Actualizar producto
+    </button>
+
+</div>
+<!--Fin Botón Actualizar producto-->

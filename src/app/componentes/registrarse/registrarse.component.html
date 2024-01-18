@@ -1,0 +1,397 @@
+<!--Contenedor-->
+<section class = "contenedor">
+
+    <!--Animación de escribiendo-->
+    <app-animacion-escribiendo *ngIf = "ver_animacion_escribiendo"
+    [ngClass] = " {animacion_salida: animacion_salida_escribiendo} "
+    >
+
+    </app-animacion-escribiendo>
+
+
+    <!--Formulario de registro-->
+    <div class = "form_registro"  *ngIf = "!ver_animacion_escribiendo">
+        
+        <!--Encabezado registrarse-->
+        <div class = "encabezado_registro">
+
+            <p>Registrarse</p>
+
+            <!--Animación de registro realizado-->
+            <div class = "size_animacion_check">
+
+                <app-animacion-check >
+
+                </app-animacion-check>
+
+            </div>
+            
+
+        </div>
+
+        <!--Contenedor Nombre del usuario y seleccionar cargo-->
+        <div class = "contenedor_nombre_cargo">
+
+            <!--Contenedor input Nombre del usuario-->  
+            <form [formGroup] = "login_email_password">
+
+                <!--Input Nombre del usuario-->
+                <div class="form-floating mb-3 inputs_contenedores">
+    
+                  <input type = "text" class="form-control" placeholder="Nombre completo del usuario"
+                  
+                  formControlName = "nombre_usuario"
+
+                  (input) = "validar_formato_email_password(true, true)"
+                  (blur) = "validar_formato_email_password(true, true)"
+                  
+                  >
+                  <label for="floatingInput">Nombre completo del usuario</label>
+
+                
+
+                </div>
+                <!--Fin Input Nombre del usuario-->
+
+
+                <!--Mensaje error correo-->
+                <p class = "mensaje_error" 
+                *ngIf = "formulario_nombre_cargo.nombre_usuario.error"
+                >
+                    
+                    {{formulario_nombre_cargo.nombre_usuario.mensaje_error}}
+
+                </p>
+
+              </form>
+            <!--Fin contenedor input Nombre del usuario-->  
+
+            <!--Contenedor elegir cargo-->  
+            <div>
+
+
+                <!--Elegir cargo del usuario-->
+              <select class="form-select"
+              #eleccion_cargo (change) = "elegir_cargo($event)"
+              >
+
+                <option selected
+                value = ""
+                >--Cargo del usuario--</option>
+
+                <option value = "Jefe">Jefe</option>
+
+                <option value = "Empleado">Empleado</option>
+
+
+              
+              </select>
+
+
+               <!--Mensaje error correo-->
+               <p class = "mensaje_error" 
+               *ngIf = "formulario_nombre_cargo.cargo_usuario.error"
+               >
+                   
+                   {{formulario_nombre_cargo.cargo_usuario.mensaje_error}}
+
+               </p>
+
+            </div>
+            <!--Fin Contenedor elegir cargo-->  
+            
+
+            
+
+        </div>
+
+        <!--Contenedor iconos Facebook y Gmail-->
+       <div class = "fondo_contenedor_facebook_gmail">
+            
+            <!--Texto usar cuenta de Fcebook o Gmail-->
+            <span>Usar cuenta de:</span>
+            
+            <div class = "contenedor_facebook_gmail">
+
+                <!--Facebook Icono-->
+                <picture (click) = "boton_registro_facebook_gmail('facebook')"
+                [ngClass] = "{animacion_elegir_seleccion_facebook_gmail: botones_facebook_gmail['facebook'].animacion}"
+                
+                >
+
+                    <img src = "assets/iconos/facebook.png" 
+                    alt="">
+
+                    <!--Título, Facebook-->
+                    <p>Facebook</p>
+
+                </picture>
+
+             
+                <!--Gmail Icono-->
+                <picture (click) = "boton_registro_facebook_gmail('gmail')" 
+                class = "animacion_elegir_seleccion_facebook_gmail"
+                [ngClass] = "{animacion_elegir_seleccion_facebook_gmail: botones_facebook_gmail['gmail'].animacion}"
+                >
+
+                    <img src = "assets/iconos/gmail.png" 
+                    alt="">
+
+                    <!--Título, Facebook-->
+                    <p>Gmail</p>
+
+                </picture>
+
+
+            </div>
+        
+            
+      
+
+
+       </div>
+
+        <!--Contenedor usar otra cuenta para registrase-->
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+
+            <div class="accordion-item">
+              
+              <!--Título ¿usar otra cuenta?-->  
+              <h2 class="accordion-header">
+    
+                <button class="accordion-button collapsed texto_usar_otra_cuenta" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"
+                > 
+                  
+                  ¿Usar otra cuenta?
+    
+                  <!--Animación flecha abajo-->
+                  <div class = "animacion_flecha">
+                    
+                    <i class="fa-solid fa-arrow-down"></i>
+    
+                  </div>
+    
+                </button>
+    
+              </h2>
+    
+              <!--Formulario usar otra cuenta-->
+              <form id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample"
+              [formGroup] = "login_email_password"
+              >
+    
+                <div class="accordion-body"
+                >
+    
+    
+                 
+    
+                  <!--Contenedor input Correo-->  
+                  <div>
+    
+                      <!--Input correo-->
+                      <div class="form-floating mb-3 inputs_contenedores">
+            
+                        <input type="email" class="form-control" placeholder="Correo"
+                        formControlName = "email"
+
+                        (input) = "validar_formato_email_password(true, true)"
+                        (blur) = "validar_formato_email_password(true, true)"
+    
+                        
+    
+                        >
+                        <label for="floatingInput">Correo</label>
+    
+                      
+    
+                      </div>
+    
+    
+                      <!--Mensaje error correo-->
+                      <p class = "mensaje_error" *ngIf = "formulario_correo_password.correo.error">
+    
+                        {{formulario_correo_password.correo.mensaje_error}}
+    
+                      </p>
+    
+                  </div>
+                  
+    
+
+                  <!--Contenedor de contraseña y repita la contraseña-->
+                  <div class = "contenedor_passwords" [ngClass] = "{error_ambas_passwords: formulario_correo_password.ambas_passwords.error}">
+
+
+                      <!--Contenedor Input contraseña-->
+                      <div>
+        
+                        <div class="input-group mb-3 inputs_contenedores">
+        
+                        
+                          <!--Input contraseña-->
+                          <div class="form-floating">
+            
+                            <input type="password" class="form-control"  
+                            placeholder="Contraseña"
+                            [type] = "password_input"
+                            
+                            formControlName = "password"
+
+                            (input) = "validar_formato_email_password(true, true)"
+                            (blur) = "validar_formato_email_password(true, true)"
+
+    
+                            >
+            
+                            <label for="floatingInputGroup1">Contraseña</label>
+            
+                          
+            
+                          </div>
+            
+                          <!--Icono mostrar u ocultar contraseña-->
+                          <span class="input-group-text icono_ver_password"
+                          (click) = "ver_password()"
+                          >
+            
+                            <!--Icono ocultar contraseña-->
+                            <i class="fa-solid fa-eye-slash"
+                            *ngIf = "password_input == 'password'"
+                            >
+            
+                            </i>
+            
+                            <!--Icono mostrar contraseña-->
+                            <i class="fa-solid fa-eye"
+                            *ngIf = "password_input == 'text'"
+                            >
+            
+                            </i>
+            
+                            
+            
+                          </span>
+            
+                        </div>
+        
+                        <!--Mensaje error contraseña-->
+                        <p class = "mensaje_error" *ngIf = "formulario_correo_password.password.error">
+                            
+                            {{formulario_correo_password.password.mensaje_error}}
+                        
+                        </p>
+        
+                      
+        
+                      </div>
+                      <!--Fin del Contenedor Input contraseña-->
+
+
+                      <!--Contenedor Input repita contraseña-->
+                      <div>
+        
+                        <div class="input-group mb-3 inputs_contenedores">
+        
+                        
+                          <!--Input contraseña-->
+                          <div class="form-floating">
+            
+                            <input type="password" class="form-control"
+                            placeholder="Repita la contraseña"
+                            [type] = "password_input"
+                            
+                            formControlName = "repita_password"
+
+                            (input) = "validar_formato_email_password(true, true)"
+                            (blur) = "validar_formato_email_password(true, true)"
+        
+                            
+        
+                        
+                            >
+            
+                            <label for="floatingInputGroup1">Repita la contraseña</label>
+            
+                          
+            
+                          </div>
+            
+                          <!--Icono mostrar u ocultar contraseña-->
+                          <span class="input-group-text icono_ver_password"
+                          (click) = "ver_password()"
+                          >
+            
+                            <!--Icono ocultar contraseña-->
+                            <i class="fa-solid fa-eye-slash"
+                            *ngIf = "password_input == 'password'"
+                            >
+            
+                            </i>
+            
+                            <!--Icono mostrar contraseña-->
+                            <i class="fa-solid fa-eye"
+                            *ngIf = "password_input == 'text'"
+                            >
+            
+                            </i>
+            
+                            
+            
+                          </span>
+            
+                        </div>
+        
+                        <!--Mensaje error contraseña-->
+                        <p class = "mensaje_error" *ngIf = "formulario_correo_password.repita_password.error">
+                            
+                            {{formulario_correo_password.repita_password.mensaje_error}}
+                        
+                        </p>
+        
+                      
+        
+                      </div>
+                      <!--Fin del Contenedor Input repita contraseña-->
+
+                      <!--Mensaje error la dos contraseñas incorrectas-->
+                      <p class = "mensaje_error" *ngIf = "formulario_correo_password.ambas_passwords.error">
+                        {{formulario_correo_password.ambas_passwords.mensaje_error}}
+                      </p>
+                      <!--Fin Mensaje error la dos contraseñas incorrectas-->
+
+
+                  </div>
+                  <!--Fin del contenedor de contraseña y repita la contraseña-->
+    
+        
+                  <!--Botón iniciar sesión-->
+                  <button class="boton_registrarme boton_registrarme-color "
+                  (click) = "boton_registro_correo_password()"
+                  >
+    
+                    Registrarse
+    
+                  </button>
+    
+                
+    
+                </div>
+    
+              </form>
+    
+    
+            </div>
+           
+            
+        </div>
+
+       
+       
+
+    </div>
+    <!--Fin formulario de registro-->
+
+
+</section>

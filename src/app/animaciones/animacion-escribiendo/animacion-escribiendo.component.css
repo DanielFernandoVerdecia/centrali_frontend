@@ -1,0 +1,34 @@
+.animacion_escribiendo p {
+
+    color: #000000;
+    font-family: monospace;
+
+    font-size: 25px;
+
+    overflow: hidden; 
+    border-right: .15em solid orange; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; 
+
+    animation: 
+      escribiendo 1.8s steps(30, end),
+      parpadeo_cursor .5s step-end infinite;
+
+
+    
+}
+  
+/*Animación escribiendo*/
+@keyframes escribiendo {
+
+    from { width: 0 }
+    to { width: 100% }
+}
+  
+/*Animación cursor*/
+@keyframes parpadeo_cursor {
+
+    from, to { border-color: transparent }
+    50% { border-color: orange }
+}
